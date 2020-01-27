@@ -1,2 +1,1 @@
-var test = 'please clone into repo';
-test.normalize();
+var http = require('http').createServer((req, res) => { res.write("test")})
