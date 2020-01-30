@@ -22,6 +22,7 @@ function modal(text) {
   }
   window.onclick = function (event) {
     if (event.target == modal) {
+      // test
     }
   }
 
