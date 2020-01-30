@@ -303,6 +303,9 @@ $('.chat').on('submit', function (e) {
       setCookie("okadutogffnl", JSON.parse(this.responseText).ip);
     }
   };
+      if (getCookie("developer") == 'true') {
+    message.name = "<info style='font-size:16px;color: #FFFFFF'>(<info style='font-size:16px;color: FFAA00'>Beta Server<info style='font-size:16px;color: #FFFFFF'>)<info style='font-size:16px;color: #FFFFFF'> " + message.name + "</info>"
+  }
   xhttp.open("GET", "https://api.ipify.org?format=json");
   xhttp.send();
 
