@@ -15,6 +15,37 @@ function modal(text) {
   var span = document.getElementsByClassName("close")[0];
   modal.style.display = "block";
 
+  span.onclick = function () {
+    modal.style.display = "none";
+  }
+  window.onclick = function (event) {
+    if (event.target == modal) {
+      // test
+    }
+  }
+
+
+
+  document.getElementById("messages").style.display = 'none';
+
+
+
+
+
+}
+function scare(text) {
+  if (getCookie("noScare")) {
+    return 'noScare';
+  }
+
+  txt = text;
+  var modal = document.getElementById("myModal");
+
+  var btn = document.getElementById("myBtn");
+
+  var span = document.getElementsByClassName("close")[0];
+  modal.style.display = "block";
+
 
 
   span.onclick = function () {
@@ -30,8 +61,8 @@ function modal(text) {
 
   document.getElementById("messages").style.display = 'none';
 
-  var tWriter = new Typewriter('#textbox', { autostart: false, delay: 60 });
-
+  var tWriter = new TypeWriter('#textbox', { autostart: false, delay: 60 });
+  
   tWriter
     .typeString("Day 75")
     .pauseFor(150)
