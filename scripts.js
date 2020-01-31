@@ -241,7 +241,12 @@ function addMessage(data) {
   }
 
   var prestige = parseInt(data.prestige);
-  var prestigeString = (prestige > 0) ? "<info style='color:gold'><b>" + romanize(prestige) + "</b><info style='color:grey'>-<info style='color:purple'>LVL<info style='color:skyblue'> " + data.level : '<info style="color:purple">LVL <info style=\'color:green\'>' + data.level;
+  function bluePresColor() {
+    if (data.bluePresColor) {
+      return "#FFAA00"
+    }else return "gold";
+  }
+  var prestigeString = (prestige > 0) ? "<info style='color:"+bluePresColor() + "'><b>" + romanize(prestige) + "</b><info style='color:grey'>-<info style='color:purple'>LVL<info style='color:skyblue'> " + data.level : '<info style="color:purple">LVL <info style=\'color:green\'>' + data.level;
   var levelFilter = "<info style=\'color:grey\'>[" + prestigeString + "<info style=\'color:grey\'>]</b><info style='color:grey'>  (</info><ree style=\'color:skyblue\'>" + Math.round(data.exp) + '<ree style=\'color:gold\'>/<ree style=\'color:green\'>' + data.needed;
 
   var timeElement = $('<strong>').innerHTML = username + ' ' + levelFilter + '<ree style=\'color:grey\'>)<info style=\'color:grey\'> on <info style=\'color:grey\'>' + date.toDateString(Date.now()) + " at " + dateHours + ":" + dateMinutes + '</strong>: ';
@@ -294,6 +299,9 @@ $('.chat').on('submit', function (e) {
     level: expAndLevel.level,
     exp: expAndLevel.exp,
     needed: getExpToLevelUp(expAndLevel.level)
+  }
+  if (getCookie("hasBluePrestigeUnlocked")) {
+    message.bluePresColor = true;
   }
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function () {
