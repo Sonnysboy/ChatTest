@@ -1,5 +1,16 @@
+/** -=-=-=-=-=-=-=-= Begin Prestige Token Handler -=-=-=-=-=-=-=-=*/
+var prestigeTokens;
+function getTokens() { return prestigeTokens || getCookie("prestigeTokens") || 0;}
+function setPrestigeTokensVar() {
+  console.log("logged");
+}
+function saveTokens() { setCookie('prestigeTokens', prestigeTokens)}
 
-
+!(function() {
+  setPrestigeTokensVar();
+  
+})();
+// -=-=-=-=-=-=-=-= End Prestige Token Handler -=-=-=-=-=-=-=-=
 var shopItems = []
 shopItems.push({
   xpMulti1: {
@@ -15,6 +26,7 @@ shopItems.push({
     description: function(){
   var prestige = parseInt(data.prestige);
     var prestigeString = (prestige > 0) ? "<info style='color:gold'><b>" + romanize(prestige) + "</b><info style='color:grey'>-<info style='color:purple'>LVL<info style='color:skyblue'> " + data.level : '<info style="color:purple">LVL <info style=\'color:green\'>' + data.level;
+
   var prestigeStringBlue = (prestige > 0) ? "<info style='color:gold'><b>" + romanize(prestige) + "</b><info style='color:grey'>-<info style='color:purple'>LVL<info style='color:skyblue'> " + data.level : '<info style="color:purple">LVL <info style=\'color:skyblue\'>' + data.level;
       
       return "Make your prestige color blue! Instead of "+ prestigeString + " It would be " + prestigeStringBlue;

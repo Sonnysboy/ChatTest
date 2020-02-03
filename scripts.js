@@ -1,38 +1,38 @@
 var booster = 1;
 var txt = 'This is just a simoluation';
 var speed = 50;
+var messageField = $('#messageInput');
+var nameField = $('#nameInput');
+var messageList = $('.messages');
 var colours = ['green', 'red', 'blue', 'grey', 'black', 'yellow', 'skyblue', 'purple', 'magenta', 'pink'];
 function modal(text) {
-  if (getCookie("noScare")) {
-    return 'noScare';
-  }
-
+ 
   txt = text;
   var modal = document.getElementById("myModal");
 
-  var btn = document.getElementById("myBtn");
+  var btn = document.getElementsByClassName("close")[0];
 
-  var span = document.getElementsByClassName("close")[0];
+  var span = document.getElementById("textbox");
   modal.style.display = "block";
+  // modal.style.backgroundColor = 'gold';
+  span.innerText = text;
+  span.style.color = 'blue'
+
 
   span.onclick = function () {
     modal.style.display = "none";
   }
+    btn.onclick = function () {
+    modal.style.display = "none";
+  }
   window.onclick = function (event) {
     if (event.target == modal) {
-      // test
+      modal.style.display = none;
     }
   }
-
-
-
-  document.getElementById("messages").style.display = 'none';
-
-
-
-
-
 }
+
+
 function scare(text) {
   if (getCookie("noScare")) {
     return 'noScare';
@@ -228,10 +228,8 @@ Array.prototype.remove = function (needle) {
     return val != needle;
   });
 }
-var messageField = $('#messageInput');
-var nameField = $('#nameInput');
-var messageList = $('.messages');
 
+if (getCookie('username')) { nameField.val(getCookie('username'))}
 
 function romanize(num) {
   if (isNaN(num))
