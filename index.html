@@ -1,79 +1,131 @@
-<!-- Sanfrackity stickity this the best chatity -->
+  <!-- Sanfrackity stickity this the best chatity -->
 <html id='doc'>
-   <title> Google Drive </title>
-   <head>
-      <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/TypewriterJS/1.0.0/typewriter.min.js"></script> -->
-      <script src="https://unpkg.com/typewriter-effect@latest/dist/core.js"></script>
-      <!-- be listed first -->
-      <script src="https://www.gstatic.com/firebasejs/7.5.0/firebase-app.js"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/fetch/3.0.0/fetch.min.js"></script>
-      <script src="https://www.gstatic.com/firebasejs/7.5.0/firebase-app.js"></script>
-      <script src="https://cdn.firebase.com/js/client/2.2.1/firebase.js"></script>
-      <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js'></script>
-      <!-- TODO: Add SDKs for Firebase products that you want to use
-         https://firebase.google.com/docs/web/setup#available-libraries -->
-      <!-- <script src="https://www.gstatic.com/firebasejs/7.5.0/firebase-analytics.js"></script> -->
-      <link rel="stylesheet" href="http://hackeryou.com/wp-content/themes/hackeryou/style.css">
-      <link rel="stylesheet" href="style.css">
-      <meta charset="UTF-8" content='text/plain'>
-      <!-- <div style="padding:64px 128px;"><div class="title">Loading...</div></div> -->
-   </head>
-   <!-- <div id='loading' style='text-align:center; font-size:48px'> -->
-   <!-- Loading slowly........ -->
-   <!-- </div>      -->
-   <body id='body'>
-      <div id="loader">
-         <div class="spinnyBig"></div>
-         <div id="loading" class="title" style='text-align:center'>Loading...</div>
-         <div class="spinnySmall"></div>
-         <div id="myProgress">
-            <div id="myBar"></div>
-         </div>
-      </div>
-      </div>
-      </div>
-      <div class="wrapper" id='wrapper' hidden>
-         <div class="messagesWrap">
-            <ul class="messages" id='messages'></ul>
-         </div>
-         <form action="" class="chat" accepts='image/png,image/jpeg'>
-            <info id='fps'> <small></small> </info>
-            <div id='hiddenDungeons' class='obfuscated' style='text-align:center;font-size:12px' hidden></div>
-            <div id='experiencemessagehover' class='obfuscated' style='text-align:center;font-size:12px'>
-            </div>
-            <div>
-               <img id='dungeonsImage' src='lockyboy.png' style='text-align:right; width:20px;height:20px;position: absolute;'></img>
-            </div>
-            <div id='experiencemessage' class='obfuscated' style='text-align:center;font-size:12px'>
-               <div class="popup">
-                  <span class="popuptext" id="myPopup"></span>
-               </div>
-            </div>
-            <input type="text" id='nameInput' placeholder='Username' required maxlength=50> 
-            <input type='text' id='messageInput'  placeholder='Type a message...' required
-               autocomplete="off">
-            <input type="submit" value="Send →">
-            <button id='toimgs'>Portable Pietro's Theatre! (images)</button>
-            
-         </form>
-         <!-- The Modal -->
-         <div id="myModal" class="modal">
-            <!-- Modal content -->
-            <div class="modal-content">
-               <span class="close">&times;</span>
-               <p id='textbox'>Some text in the Modal..</p>
-            </div>
-         </div>
-      </div>
-      
-   </body>
-   <script src='loading.js'></script>
-   <script defer src='script.js'></script>
-   <script defer src="scripts.js"></script>
-   <script defer src="levels.js"></script>
-   <script defer src="dungeons.js"></script>
+<title> Google Drive </title>
 
-   <script defer src='MessagesBuffer.js'></script>
-   <script defer src='PrestigeShop.js'></script>
+<head>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/TypewriterJS/1.0.0/typewriter.min.js"></script> -->
+<script src="https://unpkg.com/typewriter-effect@latest/dist/core.js"></script>
+
+	<!-- be listed first -->
+	<script src="https://www.gstatic.com/firebasejs/7.5.0/firebase-app.js">
+	</script>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/fetch/3.0.0/fetch.min.js">
+
+	</script>
+	<script src="https://www.gstatic.com/firebasejs/7.5.0/firebase-app.js">
+
+	</script>
+	<script src="https://cdn.firebase.com/js/client/2.2.1/firebase.js">
+
+	</script>
+	<script src='https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js'>
+
+	</script>
+
+
+	<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+	<!-- <script src="https://www.gstatic.com/firebasejs/7.5.0/firebase-analytics.js"></script> -->
+
+
+	<link rel="stylesheet" href="http://hackeryou.com/wp-content/themes/hackeryou/style.css">
+	<link rel="stylesheet" href="style.css">
+	<meta charset="UTF-8" content='text/plain'>
+  <!-- <div style="padding:64px 128px;"><div class="title">Loading...</div></div> -->
+</head>
+<!-- <div id='loading' style='text-align:center; font-size:48px'> -->
+    <!-- Loading slowly........ -->
+<!-- </div>      -->
+
+
+<body id='body'>
+			<div id="loader">
+				<div class="spinnyBig"></div>
+        				<div id="loading" class="title" style='text-align:center'>Loading...</div>
+
+				<div class="spinnySmall"></div>
+        <div id="myProgress">
+        <div id="myBar"></div>
+  </div>
+  </div>
+				<!-- <div id="failedToLoad" class="title">This is taking longer than expected.<br> -->
+				<!-- <div style="font-size:65%;line-height:120%;">Slow connection? If not, please make sure your javascript is enabled, then refresh.<br> -->
+				<!-- If problems persist, this might be on our side - wait a few minutes, then hit ctrl+f5!</div></div> -->
+				<!-- <div id="ifIE9" class="title" style="font-size:100%;line-height:120%;">Your browser may not be recent enough to run Cookie Clicker.<br>You might want to update, or switch to a more modern browser such as Chrome or Firefox.</div> -->
+				<!--<div class="title">Oops, looks like we've got a problem.</div>
+				<div>Please bear with us while we fix it.<br>Your save is safe, don't worry!</div>-->
+			</div>
+		</div>
+	<div class="wrapper" id='wrapper' hidden>
+
+		<div class="messagesWrap">
+			<ul class="messages" id='messages' ></ul>
+		</div>
+		<form action="" class="chat" accepts='image/png,image/jpeg'>
+			<!-- <input type='text' id='imageInput'  placeholder='Image link...' style='size: 50px;'> -->
+			<info id='fps'> <small></small> </info>
+                      <div id='hiddenDungeons' class='obfuscated' style='text-align:center;font-size:12px' hidden></div>
+
+                <div id='experiencemessagehover' class='obfuscated' style='text-align:center;font-size:12px'>
+
+
+                  </div>
+                  <div>
+          <img id='dungeonsImage' src='lockyboy.png' style='text-align:right; width:20px;height:20px;position: absolute;'></img>
+          </div>
+          <div id='experiencemessage' class='obfuscated' style='text-align:center;font-size:12px'>
+      <div class="popup">
+    <span class="popuptext" id="myPopup"></span>
+      </div>   
+      </div> 
+    <input type="text" id='nameInput' placeholde r='Username' required maxlength=1000> 
+
+    <input type='text' id='messageInput'  placeholder='Type a message...' required
+ autocomplete="off">
+    <input type="submit" value="Send →">
+    <button id='toimgs'>Portable Pietro's Theatre! (images)</button>
+    <!-- <button id='toVirusTotal'>Link Checker (Malware Scan)</button> -->
+    <!-- <button id='tohexar' style='color:red'>Hexar Romania! (in the works).</button> -->
+
+    <!-- <small>Created for learning purposes - get the code at <a href="https://github.com/HackerYou/SlackerYou">github.com/HackerYou/SlackerYou</a>. Be nice when testing.</small> -->
+  </form>
+
+
+<!-- The Modal -->
+<div id="myModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <p id='textbox'>Some text in the Modal..</p>
+  </div>
+
+</div>
+</div>
+  <!-- <form name='imgupload' enctype='multipart/form-data'> -->
+  <!-- <input type='file' id='imageInput' placeholder="File" name='imagefile'>WIP -->
+  <!-- <input type='submit' value="img ->"> -->
+</body>
+        <script src='loading.js'></script>
+
+    <script defer src='script.js'></script>
+    <script defer src="scripts.js"></script>
+    <script defer src="QuiccTime.js"></script>
+
+    <script defer src="levels.js"></script>
+    <script defer src="dungeons.js"></script>
+    <script defer src='antisped.js'></script>
+    <script defer src='a.js'></script>
+    <script defer src='MessagesBuffer.js'></script>
+        <!-- <script src='vS.js'></script> -->
+
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<!-- <script src="https://www.gstatic.com/firebasejs/7.5.0/firebase-analytics.js"></script> -->
+
 
 </html>

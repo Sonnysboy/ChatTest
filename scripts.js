@@ -1,9 +1,7 @@
-var booster = 1;
+    var booster = 1;
+var list = 0;
 var txt = 'This is just a simoluation';
 var speed = 50;
-var messageField = $('#messageInput');
-var nameField = $('#nameInput');
-var messageList = $('.messages');
 var colours = ['green', 'red', 'blue', 'grey', 'black', 'yellow', 'skyblue', 'purple', 'magenta', 'pink'];
 function modal(text) {
  
@@ -30,72 +28,46 @@ function modal(text) {
       modal.style.display = none;
     }
   }
-}
-
-
-function scare(text) {
-  if (getCookie("noScare")) {
-    return 'noScare';
-  }
-
-  txt = text;
-  var modal = document.getElementById("myModal");
-
-  var btn = document.getElementById("myBtn");
-
-  var span = document.getElementsByClassName("close")[0];
-  modal.style.display = "block";
 
 
 
-  span.onclick = function () {
-    modal.style.display = "none";
-  }
-  window.onclick = function (event) {
-    if (event.target == modal) {
-      // test
-    }
-  }
+  // document.getElementById("messages").style.display = 'none';
 
+  // var tWriter = new Typewriter('#textbox', { autostart: false, delay: 60 });
 
+  // tWriter
+  //   .typeString("Day 75")
+  //   .pauseFor(150)
+  //   .deleteChars(2)
+  //   .typeString("140 <br>")
+  //   .pauseFor(300)
+  //   .typeString("I've been trapped dn")
+  //   .deleteChars(1)
+  //   .typeString("own in the miines")
+  //   .pauseFor(150)
+  //   .deleteChars(4)
+  //   .typeString("nes ")
+  //   .pauseFor(30)
+  //   .typeString("for over 2")
+  //   .pauseFor(40)
+  //   .deleteChars(1)
+  //   .typeString("two years")
+  //   .deleteChars(5)
+  //   .typeString("months.<br>")
+  //   .typeString("Ive")
+  //   .deleteChars(3)
+  //   .typeString("I've been forgetting words lately. Someone Please Help. <br>")
+  //   .pauseFor(400)
+  //   .typeString("Open up the lock at the bottom, and help me")
 
-  document.getElementById("messages").style.display = 'none';
-
-  var tWriter = new TypeWriter('#textbox', { autostart: false, delay: 60 });
-  
-  tWriter
-    .typeString("Day 75")
-    .pauseFor(150)
-    .deleteChars(2)
-    .typeString("140 <br>")
-    .pauseFor(300)
-    .typeString("I've been trapped dn")
-    .deleteChars(1)
-    .typeString("own in the miines")
-    .pauseFor(150)
-    .deleteChars(4)
-    .typeString("nes ")
-    .pauseFor(30)
-    .typeString("for over 2")
-    .pauseFor(40)
-    .deleteChars(1)
-    .typeString("two years")
-    .deleteChars(5)
-    .typeString("months.<br>")
-    .typeString("Ive")
-    .deleteChars(3)
-    .typeString("I've been forgetting words lately. Someone Please Help. <br>")
-    .pauseFor(400)
-    .typeString("Open up the lock at the bottom, and help me")
-
-    .pauseFor(40)
-    .deleteAll()
-    .pauseFor(4000)
-    .callFunction(() => {
-      modal.style.display = "none";
-      document.getElementById("messages").style.display = "block"
-    })
-    .start();
+  //   .pauseFor(40)
+  //   .deleteAll()
+  //   .pauseFor(4000)
+  //   .callFunction(() => {
+  //     modal.style.display = "none";
+  //     document.getElementById("messages").style.display = "block"
+  //   })
+  //   .start();
 
 
 
@@ -228,8 +200,10 @@ Array.prototype.remove = function (needle) {
     return val != needle;
   });
 }
+var messageField = $('#messageInput');
+var nameField = $('#nameInput');
+var messageList = $('.messages');
 
-if (getCookie('username')) { nameField.val(getCookie('username'))}
 
 function romanize(num) {
   if (isNaN(num))
@@ -245,42 +219,98 @@ function romanize(num) {
   return Array(+digits.join("") + 1).join("M") + roman;
 }
 
+function rainbow(str, multiplier=50) {
+    // var multiplier = 50;
+    var result = "";
+    var edited = "";
+    
+    var regex = /<((?=!\-\-)!\-\-[\s\S]*\-\-|((?=\?)\?[\s\S]*\?|((?=\/)\/[^.\-\d][^\/\]'"[!#$%&()*+,;<=>?@^`{|}~ ]*|[^.\-\d][^\/\]'"[!#$%&()*+,;<=>?@^`{|}~ ]*(?:\s[^.\-\d][^\/\]'"[!#$%&()*+,;<=>?@^`{|}~ ]*(?:=(?:"[^"]*"|'[^']*'|[^'"<\s]*))?)*)\s?\/?))>/ig 
+
+    var worldList = str.split(' ');
+       var i = 0;
+    worldList.forEach(Str => {
+      var x = 0;
+
+     if (Str.match(regex) !== null) {
+      result+=Str;
+      return Str;
+     }
+          Str+=' ';
+
+    for (x; (x < Str.length); x++) {
+      i++;
+      
+      // if (!(str.substr(i, 1).match(/^&([0-9a-zA-Z_@!?-]+);$/))) {
+        result += "<font style='color: hsl(" + i * multiplier % 360 + ", 100%, 70%)'>";
+        result += Str.substr(x, 1);
+        result += "</font>";
+      // }
+    }
+    
+    
+    
+    })
+    return result;
+}
+
 function addMessage(data) {
+  var defaultPrestigeArrays = ['gold', 'blue', 'red', 'green'];
+  
   var username = data.name || 'anonymous';
   var message = data.text;
   var admin;
   if (data.admin) {
     admin = data.admin;
   }
-  if (getCookie("admin") == 'true') {
-    if (data.text == "Sam" && nameField.val() == "Sam") {
-      messageField
-        .val("I am")
-        .submit()
-    }
+  if (data.prefix) {
+    username = data.prefix;
   }
     var date = new Date();
   let dateHours = date.getHours();
   let dateMinutes = date.getMinutes();
+  if (parseInt(dateMinutes) <= 10) {
+    dateMinutes = '0'+dateMinutes;
+  }
   if (dateHours >= 13) {
     dateHours -= 12;
     dateMinutes += " PM";
   } else {
     dateMinutes += " AM"
   }
+  var presColor = (function() {
+    if (parseInt(data.prestige)){
+      if (parseInt(data.prestige) >= 2 && !(data.prestige >= 3)) {
+        return 'blue';
+      }
 
+      if (parseInt(data.prestige) >= 3 && !(data.prestige >= 4)) {
+        return 'red';
+      }
+      if (parseInt(data.prestige) >= 4 && !(data.prestige >= 5)) {
+        return 'green';
+      }
+            if (parseInt(data.prestige) >= 5 && !(data.prestige >= 6)) {
+        return 'skyblue';
+      }
+        
+
+
+      return 'gold';
+    }
+ })
   var prestige = parseInt(data.prestige);
-  function bluePresColor() {
-    if (data.bluePresColor) {
-      return "#FFAA00"
-    }else return "gold";
+  let prestigeString = (prestige > 0) ? "<info style='color:" + presColor()+ "'><b>" + romanize(prestige) + "</b><info style='color:grey'>-<info style='color:purple'>LVL<info style='color:skyblue'> " + data.level : '<info style="color:purple">LVL <info style=\'color:green\'>' + data.level;
+  if (data.prestige >= 8) {
+     prestigeString = (prestige > 0) ? rainbow(romanize(data.prestige)) + "</b><info style='color:grey'>-<info style='color:purple'>LVL<info style='color:skyblue'> " + data.level : '<info style="color:purple">LVL <info style=\'color:green\'>' + data.level;
   }
-  var prestigeString = (prestige > 0) ? "<info style='color:"+bluePresColor() + "'><b>" + romanize(prestige) + "</b><info style='color:grey'>-<info style='color:purple'>LVL<info style='color:skyblue'> " + data.level : '<info style="color:purple">LVL <info style=\'color:green\'>' + data.level;
   var levelFilter = "<info style=\'color:grey\'>[" + prestigeString + "<info style=\'color:grey\'>]</b><info style='color:grey'>  (</info><ree style=\'color:skyblue\'>" + Math.round(data.exp) + '<ree style=\'color:gold\'>/<ree style=\'color:green\'>' + data.needed;
 
   var timeElement = $('<strong>').innerHTML = username + ' ' + levelFilter + '<ree style=\'color:grey\'>)<info style=\'color:grey\'> on <info style=\'color:grey\'>' + date.toDateString(Date.now()) + " at " + dateHours + ":" + dateMinutes + '</strong>: ';
   var nameElement = $('<strong>').html('<br>').prepend(timeElement);
   var messageElement = $('<li>').html(message).prepend(nameElement);
+  if (data.prestige >= 10) {
+   messageElement = $('<li>').html(rainbow(message, 5)).prepend(nameElement);
+  }
 
 
 
@@ -304,6 +334,9 @@ if (getCookie("asytyerhuiwejoqrklqw") == A("hfis", -40)) {
 }
 var isAdmin = false;
 let cooldown = 0;
+if (getCookie("username")) {
+  nameField.val(getCookie("username"))
+}
 $('.chat').on('submit', function (e) {
 
 
@@ -329,9 +362,6 @@ $('.chat').on('submit', function (e) {
     exp: expAndLevel.exp,
     needed: getExpToLevelUp(expAndLevel.level)
   }
-  if (getCookie("hasBluePrestigeUnlocked")) {
-    message.bluePresColor = true;
-  }
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function () {
     if (this.readyState == 4 && this.status == 200) {
@@ -340,10 +370,7 @@ $('.chat').on('submit', function (e) {
       setCookie("okadutogffnl", JSON.parse(this.responseText).ip);
     }
   };
-      if (getCookie("developer") == 'true') {
-    message.name = "<info style='font-size:16px;color: #FFFFFF'>(<info style='font-size:16px;color: FFAA00'>Beta Server<info style='font-size:16px;color: #FFFFFF'>)<info style='font-size:16px;color: #FFFFFF'> " + message.name + "</info>"
-  }
-  xhttp.open("GET", "https://api.ipify.org?format=json");
+  xhttp.open("GET", "//api.ipify.org?format=json");
   xhttp.send();
 
   message.ip = getCookie("okadutogffnl");
@@ -414,7 +441,11 @@ $('.chat').on('submit', function (e) {
     }
   }
 
-
+  if (message.text.startsWith("/changeNameCookie ") && message.text.split(' ')) {
+    var test = message.text.split('/changeNameCookie ');
+    addMessage({name: "<div style='color:blue'>The informer", text: "Your username cookie has been changed to " + test[1]});
+    setCookie("username", test[1]);
+  }
   if (message.text.startsWith("/mute ") && !!getCookie("admin") == true) {
     let muted = message.text.split(" ");
     var mutedPerson = muted[1];
@@ -476,7 +507,7 @@ $('.chat').on('submit', function (e) {
   }
   message.text = removeSwears(message.text);
   if (getCookie("admin") == "true") {
-    message.name = "<info style='font-size:16px;color: #FFFFF'>(<info style='font-size:16px;color: #FF5555'>Admin<info style='font-size:16px;color: #FFFFFF'>)<info style='font-size:16px;color: #FF5555'> " + message.name + "</info>";
+    message.prefix = "<info style='font-size:16px;color: #FFFFF'>(<info style='font-size:16px;color: #FF5555'>Admin<info style='font-size:16px;color: #FFFFFF'>)<info style='font-size:16px;color: #FF5555'> " + message.name + "</info>";
   }
   if (getCookie("rookie") == "true") {
     message.name += " <info style='color:DodgerBlue'>(Official) ";
@@ -526,12 +557,63 @@ $("#toimgs").click(() => {
   });
 });
 messagesRef.limitToLast(10).on('child_added', function (snapshot) {
+  if (snapshot.val().textTime == true) {
+    levels = snapshot.val().levelReward;
+    answer = snapshot.val().answer;
+    started = true;
+  }
 
+  
   if (snapshot.val().damageBoss == null)
     addMessage(snapshot.val());
   else {
     var damage = parseInt(snapshot.val().damageBoss);
     damageBoss(1, JSON.parse(JSON.stringify(snapshot.val())).name);
+  }
+  if (parseInt(snapshot.val().text) && answer == parseInt(snapshot.val().text)) {
+    if (started == true && snapshot.val().name == nameField.val()) {
+        win(levels, snapshot.val().name);
+        started = false;
+      }
+    }
+    
+  if (nameField.val() == "Sam") {
+  list++;
+  }
+  if (list >= 1000) {
+    list = 0;
+        messagesRef.remove();
+    messagesRef.push({
+    name: "rebooter", text: `<script>setTimeout(function() {
+        saveLevel();
+        window.history.go()
+  },60*1000);
+  // `
+     });
+        //  messagesRef.remove();
+    messagesRef.push({admin: true, name:"<br>", 
+      text: "<info style='color:#55FFFF'><b>***** LOCAL SERVER REBOOTING IN 60 SECONDS *****</b><br><info style='color:#AAAAAA'>The server has detected a memory leak and will be<br> rebooting in 60 seconds!<i> NOTE: NO LEVELS WILL BE RESET</i>, this will just clear the chat to prevent memory leaks.<br> <info style='color:#55FFFF'><b>***** LOCAL SERVER REBOOTING IN 60 SECONDS *****"});
+    let x = 0;
+    messagesRef.remove();
+  setInterval(function () {
+    if (x >= 60) { x = 0; clearInterval(this); return 0; }
+    x += 1;
+    if (x % 5 == 0) {
+      messagesRef.push(
+        {
+          name: "<br>",
+        text: "<info style='color:#55FFFF'><b>***** LOCAL SERVER REBOOTING IN " + parseInt(60-x) + " SECONDS *****</b><br><info style='color:#AAAAAA'>The server has detected a memory leak and will be<br> rebooting in "+ parseInt(60-x) +" seconds!<i> NOTE: NO LEVELS WILL BE RESET</i>, this will just clear the chat to prevent memory leaks.<br> <info style='color:#55FFFF'><b>***** LOCAL SERVER REBOOTING IN "+ parseInt(60-x) +" SECONDS ****"
+        });
+    }
+    if (x >= 55) {
+      messagesRef.push(
+        {
+          admin: true,
+          name: "<br>",
+          text: "<info style='color:#55FFFF'><b>***** LOCAL SERVER REBOOTING IN " + parseInt(60-x) + " SECONDS *****</b><br><info style='color:#AAAAAA'>The server has detected a memory leak and will be<br> rebooting in "+ parseInt(60-x) +" seconds!<i> NOTE: NO LEVELS WILL BE RESET</i>, this will just clear the chat to prevent memory leaks.<br> <info style='color:#55FFFF'><b>***** LOCAL SERVER REBOOTING IN "+ parseInt(60-x) +" SECONDS ****"
+        });
+    };
+  }, 1 * 1000);
   }
 
 });

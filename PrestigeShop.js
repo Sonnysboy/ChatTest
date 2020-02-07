@@ -39,9 +39,8 @@ const buyPrestigeColor = function() {
 }
 
 
-shopItems.get = function(what, args=undefined) {
-  return (what, args) => what && what=='*' ? shopItems[0] : args ? shopItems[0][`${what}`][`${args}`] : shopItems[0][`${what}`] ;
-}
+shopItems.get = (what, args=undefined) => what && what=='*' ? shopItems[0] : args ? shopItems[0][`${what}`][`${args}`] : shopItems[0][`${what}`];
+
 
 var PrestigeShop = function() {
   this.tokens;
